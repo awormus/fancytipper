@@ -1,3 +1,95 @@
+
+<!DOCTYPE html>
 <html>
-Hello World! This is a second test!
+<head>
+  <script src="zepto.min.js"></script>
+</head>
+<body>
+
+<form>
+<input name="total" id="total" type="text">
+</form>
+
+<div>10% Tip = <span id="10tip"></span></div>
+<div>20% Tip = <span id="20tip"></span></div>
+<div>30% Tip = <span id="30tip"></span></div>
+<div>Closest all Same Number <span id="sametip"></span></div>
+<div>Closest palindrome <span id="palindrometip"></span></div>
+
+<script>
+    $("#total").bind('keydown', function (e) {
+
+     if ( event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || 
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.keyCode == 13 || event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault(); 
+            }   
+        }
+    });
+
+    $("#total").bind('keyup', function (e) {
+  var priceFloat = parseFloat($("#total").val());
+	var tip10 = round2points(priceFloat * .10 + priceFloat);
+	var tip20 = round2points(priceFloat * .20 + priceFloat);
+	var tip30 = round2points(priceFloat * .30 + priceFloat);
+
+        $("#10tip").text(tip10 + " : " + findClosestPalindrome(tip10)); 
+        $("#20tip").text(tip20 + " : " + findClosestPalindrome(tip20)); 
+        $("#30tip").text(tip30 + " : " + findClosestPalindrome(tip30)); 
+
+        $("#sametip").text(findClosestNumber(priceFloat));
+        $("#palindrometip").text(findClosestPalindrome(priceFloat));
+    });
+
+    function round2points(price){
+	var result = Math.round(price*100)/100;
+	return result;
+    }
+
+    function findClosestNumber(price){
+        return price;
+    }
+
+    function getPercentChange(price1, price2){
+	return price1/price2*100;
+    }
+
+    function findClosestPalindrome(price){
+	var sPrice = price.toString();
+ 	var str2 = sPrice.replace(/\./g,"");
+	var len = str2.length;
+	var halflen = Math.floor(len / 2);
+	var ddd = halflen;
+	var firstPart = sPrice.substr(0, halflen);
+	var middlePart = "";
+	var lastPart = sPrice.substr(-halflen);
+
+	if (firstPart < lastPart){
+		firstPart1 = parseFloat(firstPart);
+		firstPart = Math.floor(firstPart1+1).toString();
+	}
+
+	if (len%2){
+		middlePart = sPrice.substr(halflen,1);
+	}
+	
+	lastPart = firstPart.split("").reverse().join("");
+	ddd = firstPart +  middlePart + lastPart;
+	retVal = ddd.substr(0, ddd.length-2)+"."+ddd.substr(-2);
+	return retVal ;
+
+    }
+
+    $("#total").focus();
+</script>
+
+</body>
 </html>
