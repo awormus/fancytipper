@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.wormus.fancytipper"
+        versionCode="10" 
+        version   = "0.0.1">
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Fancy Tipper</name>
+
+    <description>
+        An app for those of us who enjoy fancy tips 
+    </description>
+
+    <author href="https://www.wormus.com/fancytipper" email="awormus@gmail.com">
+        Aaron Wormus 
+    </author>
+
+</widget>
