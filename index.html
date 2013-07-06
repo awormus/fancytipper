@@ -67,14 +67,13 @@
 
 				<table width="100%" border="1">
 					<tr><th width="20%"></th><th width="40%" style="text-align:center;">Tip Amount</th><th style="text-align:center;">Total Payment</th></tr>
-					<tr><td width="20%">10 Percent Tip</td>
+					<tr><td width="20%">10%</td>
 						<td width="40%" style="text-align:center;"><span id="10tip"></span></td>
 						<td style="text-align:center;"><span id="10total"></span></td></tr>
-					<tr><td width="20%">20 Percent Tip</td>
+					<tr><td width="20%">20%</td>
 						<td width="40%" style="text-align:center;"><span id="20tip"></span></td>
 						<td style="text-align:center;"><span id="20total"></span></td></tr>
-				
-					<tr><td width="20%">30 Percent Tip</td>
+					<tr><td width="20%">30%</td>
 						<td width="40%" style="text-align:center;"><span id="30tip"></span></td>
 						<td style="text-align:center;"><span id="30total"></span></td></tr>
 				
@@ -109,14 +108,27 @@
 		});
 
 		$("#total").bind('keyup', function (e) {
-		var priceFloat = parseFloat($("#total").val());
-		var tip10 = round2points(priceFloat * .10 + priceFloat);
-		var tip20 = round2points(priceFloat * .20 + priceFloat);
-		var tip30 = round2points(priceFloat * .30 + priceFloat);
+		    var priceFloat = parseFloat($("#total").val());
 
-			$("#10tip").text(tip10 + " : " + findClosestPalindrome(tip10)); 
-			$("#20tip").text(tip20 + " : " + findClosestPalindrome(tip20)); 
-			$("#30tip").text(tip30 + " : " + findClosestPalindrome(tip30)); 
+		    var tip10 = round2points(priceFloat * .10);
+		    var tip20 = round2points(priceFloat * .20);
+		    var tip30 = round2points(priceFloat * .30);
+
+
+
+		    var total10 = tip10 + priceFloat;
+			var total20 = tip20 + priceFloat;
+		    var total30 = tip30 + priceFloat
+
+			$("#10tip").text(tip10); // + " : " + findClosestPalindrome(tip10)); 
+			$("#20tip").text(tip20); // + " : " + findClosestPalindrome(tip20)); 
+			$("#30tip").text(tip30); // + " : " + findClosestPalindrome(tip30)); 
+
+			$("#10total").text(total10); // + " : " + findClosestPalindrome(tip10)); 
+			$("#20total").text(total20); // + " : " + findClosestPalindrome(tip20)); 
+			$("#30total").text(total30); // + " : " + findClosestPalindrome(tip30)); 
+
+
 
 			$("#sametip").text(findClosestNumber(priceFloat));
 			$("#palindrometip").text(findClosestPalindrome(priceFloat));
