@@ -16,5 +16,7 @@
     <author href="https://www.wormus.com/fancytipper" email="awormus@gmail.com">
         Aaron Wormus 
     </author>
+	<preference name="loadingPageDialog" value="Hello, World" />
+
 
 </widget>
